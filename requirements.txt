@@ -1,3 +1,4 @@
 SQLAlchemy==2.0.25
 plotly
 mysqlclient==2.2.0
+streamlit
