@@ -1,4 +1,3 @@
 plotly
-SQLAlchemy==2.0.0
-mysqlclient==2.0.0
-streamlit
+SQLAlchemy 
+mysqlclient
