@@ -2,6 +2,7 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px  # interactive charts
 import time
+import sqlalchemy
 
 #from streamlit_autorefresh import st_autorefresh
 
