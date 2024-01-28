@@ -54,7 +54,7 @@ while True:
         )
             
     with temp_graph:
-        tempdata = data[['time_stamp','tempF']].copy()
+        tempdata = data[['tempF','tempF']].copy()
         fig_t = px.line(
             tempdata,
             x="time_stamp", 
