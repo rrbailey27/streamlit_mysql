@@ -25,7 +25,7 @@ conn = st.connection('mysql', type='sql')
 #st_autorefresh(interval=5000, key="fetch_data")
 
 def fetch_data():
-    rawdata = conn.query('SELECT tempF, humidity, addtime(time_stamp,"-4:00:00") from esp32_dht ORDER BY (Addtime(time_stamp,"-4:00:00")) DESC LIMIT 300;', ttl=1)
+    rawdata = conn.query('SELECT tempF, humidity, addtime(time_stamp,"-4:00:00") AS time_stamp FROM esp32_dht ORDER BY (Addtime(time_stamp,"-4:00:00")) DESC LIMIT 300;', ttl=1)
     df = pd.DataFrame(rawdata) #convert to transposed dataframe
     return df
 
