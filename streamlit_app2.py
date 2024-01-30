@@ -20,7 +20,7 @@ humid_graph = st.empty() #this is the line chart of the humidity on the dashboar
 
 
 # Initialize connection.
-conn = st.connection('mysql', type='sql')
+#conn = st.connection('mysql', type='sql')
 
 #st_autorefresh(interval=5000, key="fetch_data")
 
@@ -31,7 +31,9 @@ def fetch_data():
 
 
 while True:
+    conn = st.connection('mysql', type='sql')
     data = fetch_data()
+    conn.close()
 
     current_temp, current_humidity = data.at[data.index[0], "tempF"], data.at[data.index[0], "humidity"]
     old_temp, old_humidity = data.at[data.index[1], "tempF"], data.at[data.index[1], "humidity"]
