@@ -26,7 +26,7 @@ conn = st.connection('mysql', type='sql')
 
 @st.cache_data(ttl=1)
 def fetch_data():
-    rawdata = conn.query('SELECT tempF, humidity, HOUR(date_add(time_stamp,INTERVAL-5 HOUR)) as hour, MINUTE(date_add(time_stamp,INTERVAL-5 HOUR)) as minute, SECOND(date_add(time_stamp,INTERVAL-5 HOUR)) as second, date_add(time_stamp,INTERVAL-5 HOUR) as ts FROM esp32_dht ORDER BY time_stamp DESC LIMIT 4800;', ttl=1)
+    rawdata = conn.query('SELECT tempF, humidity, YEAR(date_add(time_stamp,INTERVAL-5 HOUR)) as year, MONTH(date_add(time_stamp,INTERVAL-5 HOUR)) as month, DAY(date_add(time_stamp,INTERVAL-5 HOUR)) as day, HOUR(date_add(time_stamp,INTERVAL-5 HOUR)) as hour, MINUTE(date_add(time_stamp,INTERVAL-5 HOUR)) as minute, SECOND(date_add(time_stamp,INTERVAL-5 HOUR)) as second, date_add(time_stamp,INTERVAL-5 HOUR) as ts FROM esp32_dht ORDER BY time_stamp DESC LIMIT 4800;', ttl=1)
     #rawdata = conn.query('SELECT tempF, humidity, date_add(time_stamp,INTERVAL-5 HOUR) as ts FROM esp32_dht ORDER BY time_stamp DESC LIMIT 4800;')
 
     df = pd.DataFrame(rawdata) #convert to transposed dataframe
@@ -39,7 +39,7 @@ while True:
     current_temp, current_humidity = data.at[data.index[0], "tempF"], data.at[data.index[0], "humidity"]
     old_temp, old_humidity = data.at[data.index[1], "tempF"], data.at[data.index[1], "humidity"]
     temp_delta, humid_delta = int(current_temp)-int(old_temp), int(current_humidity)-int(old_humidity)
-    lasttime_str = str([data.at[data.index[0],"hour"]]) + ":" + str([data.at[data.index[0],"minute"]]) + ":" + str([data.at[data.index[0],"second"]])
+    lasttime_str = str([data.at[data.index[0],"month"]]) +"/"+str([data.at[data.index[0],"day"]])+ "/" + str([data.at[data.index[0],"year"]])+ " at "str([data.at[data.index[0],"hour"]]) + ":" + str([data.at[data.index[0],"minute"]]) + ":" + str([data.at[data.index[0],"second"]])
    
     with display.container():
         st.text(lasttime_str)    
