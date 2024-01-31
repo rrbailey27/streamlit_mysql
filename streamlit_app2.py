@@ -40,11 +40,9 @@ while True:
     old_temp, old_humidity = data.at[data.index[1], "tempF"], data.at[data.index[1], "humidity"]
     temp_delta, humid_delta = int(current_temp)-int(old_temp), int(current_humidity)-int(old_humidity)
 
-    st.text([data.at[data.index[0],"minute"]])    
-
-    
+   
     with display.container():
-        st.text([data.at[data.index[0],"ts"]])    
+        st.text([data.at[data.index[0],"minute"]])    
         
         # Create Summary Temperature Information
         lasttime, kpi1, kpi2 = st.columns(3)
