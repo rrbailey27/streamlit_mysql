@@ -47,12 +47,13 @@ while True:
         st.text([data.at[data.index[0],"ts"]])    
         
         # Create Summary Temperature Information
-        time, kpi1, kpi2 = st.columns(3)
+        lasttime, kpi1, kpi2 = st.columns(3)
 
-        time.metric(
+        lasttime.metric(
             label = "Last Time",
             value = "{} F".format([data.at[data.index[0],"ts"]]),
         )
+        
         kpi1.metric(
             label = "Temperature F",
             value = "{} F".format(current_temp),
