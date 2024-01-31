@@ -24,7 +24,7 @@ conn = st.connection('mysql', type='sql')
 
 #st_autorefresh(interval=5000, key="fetch_data")
 
-@st.cache_data(ttl=15)
+@st.cache_data(ttl=0)
 def fetch_data():
     rawdata = conn.query('SELECT tempF, humidity, date_add(time_stamp,INTERVAL-5 HOUR) as ts FROM esp32_dht ORDER BY time_stamp DESC LIMIT 4800;', ttl=1)
     df = pd.DataFrame(rawdata) #convert to transposed dataframe
@@ -38,7 +38,7 @@ while True:
     old_temp, old_humidity = data.at[data.index[1], "tempF"], data.at[data.index[1], "humidity"]
     temp_delta, humid_delta = int(current_temp)-int(old_temp), int(current_humidity)-int(old_humidity)
 
-    st.write([data.at[data.index([0],"time_stamp")])    
+    st.write([data.at[data.index[0],"time_stamp"])    
 
     
     with display.container():
