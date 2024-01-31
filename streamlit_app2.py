@@ -26,7 +26,7 @@ conn = st.connection('mysql', type='sql')
 
 @st.cache_data(ttl=1)
 def fetch_data():
-    rawdata = conn.query('SELECT tempF, humidity, date_add(time_stamp,INTERVAL-5 HOUR) as ts FROM esp32_dht ORDER BY time_stamp DESC LIMIT 4800;', ttl=1)
+    rawdata = conn.query('SELECT tempF, humidity, HOUR(date_add(time_stamp,INTERVAL-5 HOUR) as ts) FROM esp32_dht ORDER BY time_stamp DESC LIMIT 4800;', ttl=1)
     #rawdata = conn.query('SELECT tempF, humidity, date_add(time_stamp,INTERVAL-5 HOUR) as ts FROM esp32_dht ORDER BY time_stamp DESC LIMIT 4800;')
 
     df = pd.DataFrame(rawdata) #convert to transposed dataframe
