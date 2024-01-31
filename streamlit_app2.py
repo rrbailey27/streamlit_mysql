@@ -39,19 +39,14 @@ while True:
     current_temp, current_humidity = data.at[data.index[0], "tempF"], data.at[data.index[0], "humidity"]
     old_temp, old_humidity = data.at[data.index[1], "tempF"], data.at[data.index[1], "humidity"]
     temp_delta, humid_delta = int(current_temp)-int(old_temp), int(current_humidity)-int(old_humidity)
-    lasttime_str = str([data.at[data.index[0],"month"]]) + "/" + str([data.at[data.index[0],"day"]]) + "/" + str([data.at[data.index[0],"year"]])+ " at "+str([data.at[data.index[0],"hour"]]) + ":" + str([data.at[data.index[0],"minute"]]) + ":" + str([data.at[data.index[0],"second"]])
+    lasttime_str = "Time of Last Data: "+ str(data.at[data.index[0],"month"]) + "/" + str([data.at[data.index[0],"day"]]) + "/" + str([data.at[data.index[0],"year"]])+ " at "+str([data.at[data.index[0],"hour"]]) + ":" + str([data.at[data.index[0],"minute"]]) + ":" + str([data.at[data.index[0],"second"]])
    
     with display.container():
         st.text(lasttime_str)    
         
         # Create Summary Temperature Information
-        lasttime, kpi1, kpi2 = st.columns(3)
-
-        lasttime.metric(
-            label = "Last Time",
-            value = "{} F".format([data.at[data.index[0],"ts"]]),
-        )
-        
+        kpi1, kpi2 = st.columns(3)
+   
         kpi1.metric(
             label = "Temperature F",
             value = "{} F".format(current_temp),
