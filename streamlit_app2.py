@@ -45,7 +45,7 @@ while True:
     
     with display.container():
         # Create Summary Temperature Information
-        kpi1, kpi2 = st.columns(32
+        kpi1, kpi2 = st.columns(2)
 
         kpi1.metric(
             label = "Temperature F",
