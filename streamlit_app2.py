@@ -40,7 +40,7 @@ while True:
 
     with display.container():
         # Create Summary Temperature Information
-        kpi1, kpi2 = st.columns(2)
+        kpi1, kpi2, lasttime = st.columns(3)
 
         kpi1.metric(
             label = "Temperature F",
@@ -53,7 +53,9 @@ while True:
             value="{} %".format(current_humidity),
             delta="{} %".format(humid_delta)
         )
-            
+       
+        lasttime = st.write([data.at[data.index([0],"time_stamp")])    
+        
     with temp_graph:
         tempdata = data[['ts','tempF']].copy()
         fig_t = px.line(
