@@ -44,6 +44,8 @@ while True:
 
     
     with display.container():
+        st.text([data.at[data.index[0],"ts"]])    
+        
         # Create Summary Temperature Information
         time, kpi1, kpi2 = st.columns(3)
 
