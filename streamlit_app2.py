@@ -52,7 +52,7 @@ while True:
     lasttime_str = "Time of Last Data: "+ month + "/" + day + "/" + year + " at "+ hour + ":" + minute + ":" + second   
 
     with display.container():
-        st.text(lasttime_str)    
+        st.write(lasttime_str)    
         
         # Create Summary Temperature Information
         kpi1, kpi2 = st.columns(2)
