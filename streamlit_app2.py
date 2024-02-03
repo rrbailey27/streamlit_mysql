@@ -81,7 +81,7 @@ while True:
 
     with humid_graph:
         humiddata = data[['ts','humidity']].copy()
-        fig_h = px.scatter(
+        fig_h = px.area(
             humiddata,
             x="ts", 
             y="humidity",
