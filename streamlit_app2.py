@@ -30,7 +30,7 @@ def fetch_data():
     return df
 
 def twodigits(string):
-    if len(string)==1
+    if len(string)==1:
         newstring = "0" + string
     else:
         newstring = string
