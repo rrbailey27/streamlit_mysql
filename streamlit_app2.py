@@ -9,7 +9,7 @@ import time
 st.set_page_config(
     page_title="AWS MySQL Testing",
     page_icon="XX",
-    # layout="wide",
+    layout="centered",
 )
 
 st.title('Here is my weather app!')
